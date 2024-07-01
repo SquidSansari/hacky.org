@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACK - EST. ∞</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="musicpage.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            font-size: 20px; /* Base font size */
+            background-color: #1a1a1a;
+            overflow: hidden;
+            color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6, p, button, .logo-text, .tagline {
+            font-family: 'VT323', monospace;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height:;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .logo-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .logo-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem; /* Larger font size for logo text */
+            font-weight: bold;
+            color: #0b504f;
+            text-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            animation: glow 4.5s ease-in-out infinite alternate, glitch .7ms infinite;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #0b504f, 0 0 10px #0b504f, 0 0 15px #0b504f;
+            }
+            to {
+                text-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            }
+        }
+        @keyframes glitch {
+            200% {
+                text-shadow: -2px 3px 0 #0b504f, 20px -3px 0 rgb(123, 0, 255);
+                transform: translate(var(--glitch-translate, 0));
+            }
+            2% {
+                text-shadow: 2px -3px 0 #0b504f, -2px 3px 0 blue;
+            }
+            100%, 110% {  
+                text-shadow: none; 
+                transform: none; 
+            }
+        }
+        .tagline {
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem; /* Larger font size for tagline */
+            color: #ddd;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .enter-button {
+            font-size: 1.5rem; /* Larger font size for buttons */
+            padding: 15px 30px; /* Adjust padding to scale with font size */
+            color: #0b504f;
+            background-color: transparent;
+            border: 2px solid #0b504f;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #0b504f;
+            box-shadow: 0 0 10px #0b504f;
+            animation: buttonGlow 1.5s ease-in-out infinite alternate, glitch 2s infinite;
+            margin: 10px;  /* Space around each button */
+        }
+        .enter-button:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        @keyframes buttonGlow {
+            from {
+                box-shadow: 0 0 5px #0b504f, 0 0 10px #0b504f;
+            }
+            to {
+                box-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            }
+        }
+        #player-container {
+            color: #0b504f;
+            max-width: 600px;
+            width: 100%;
+            border: px solid #0b504f(255, 0, 0);
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+        }
+        #playlist {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        #playlist li {
+            cursor: pointer;
+            padding: 5px 0;
+            margin: 5px 0;
+            border: .5px solid #0b504f(255, 0, 0);
+        }
+        #playlist li:hover {
+            background-color: #030;
+        }
+        #now-playing {
+            margin-top: 20px;
+            border: 10px solid (255, 0, 0);
+            padding: 10px;
+        }
+        #controls {
+            margin-top: 20px;
+        }
+        .pixel-button {
+            background-color: #000;
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-family:monospace;
+            font-size: 16px;
+            position: relative;
+        }
+        .pixel-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: px solid rgb(0, 0, 0);
+            clip-path: polygon(
+                0 0, 100% 0, 100% 3px, 3px 3px, 3px 100%, 0 100%,
+                0 calc(100% - 3px), calc(100% - 3px) calc(100% - 3px),
+                calc(100% - 3px) 3px, 0 3px
+            );
+        }
+        #progress-container {
+            margin-top: 20px;
+            border: px solid #ffffff(255, 0, 0);
+            padding: 3px;
+            position: relative;
+        }
+        #progress-bar {
+            height: 20px;
+            background-color: #000000;
+        }
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: #fff(255, 0, 0);
+            transition: width 0.1s linear;
+        }
+        #progress::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            bottom: 3px;
+            left: 3px;
+            right: 3px;
+            background: repeating-linear-gradient(
+                to right,
+                #fff(255, 0, 0),
+                #fff(255, 0, 0) 3px,
+                #000 3px,
+                #000 6px
+            );
+            clip-path: polygon(0 0, var(--progress) 0, var(--progress) 100%, 0 100%);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <div class="logo-text">.mp3</div>
+            </div>
+        </div>
+        <body>
+            <div id="player-container">
+                <h2> <a href="index.html">.//HACKERSONGS2024</a></h2>
+               
+                <ul id="playlist">
+                    <li data-src="song1.mp3">TIME ZONE DIFFERENCE - HACKY X SWAD</li>
+                    <li data-src="song2.mp3">SMEXI - HACKY P. QUATAEE</li>
+                    <li data-src="song3.mp3">SOUNDLIKEADEMON - HACKY P. SWAD</li>
+                </ul>
+                <div id="now-playing">
+                    NOW PLAYING: <span id="current-track">No track selected</span>
+                </div>
+                 <div id="player-container">
+                    <!-- ... (existing player content) ... -->
+                    <div id="speed-control">
+                        <span>0.5x</span>
+                        <input type="range" id="speed-slider" min="0.5" max="2" step="0.1" value="1">
+                        <span>2x</span>
+                        <span id="speed-value">1.0x</span>
+                    </div>
+                </div>
+                <div id="controls">
+                    <button id="prev" class="pixel-button">⏴</button>
+                    <button id="play-pause" class="pixel-button">▶</button>
+                    <button id="next" class="pixel-button">⏵</button>
+                </div>
+                <div id="progress-container">
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+                    <div id="player-container">
+        <!-- ... (existing player content) ... -->
+        
+    </div>
+            </div>
+        
+            <script>
+                
+                  const speedSlider = document.getElementById('speed-slider');
+        const speedValue = document.getElementById('speed-value');
+
+        speedSlider.addEventListener('input', function() {
+            const speed = parseFloat(this.value);
+            audio.playbackRate = speed;
+            speedValue.textContent = speed.toFixed(1) + 'x';
+        });
+
+        // Update the loadTrack function to reset speed when changing tracks
+        function loadTrack(index) {
+            const track = playlist.children[index];
+            audio.src = track.getAttribute('data-src');
+            currentTrack.textContent = track.textContent;
+            currentTrackIndex = index;
+            
+            // Reset speed to normal when changing tracks
+            audio.playbackRate = 1;
+            speedSlider.value = 1;
+            speedValue.textContent = '1.0x';
+        }
+
+                const playlist = document.getElementById('playlist');
+                const currentTrack = document.getElementById('current-track');
+                const playPauseBtn = document.getElementById('play-pause');
+                const prevBtn = document.getElementById('prev');
+                const nextBtn = document.getElementById('next');
+                const progressBar = document.getElementById('progress');
+        
+                let currentTrackIndex = 0;
+                let isPlaying = false;
+        
+                const audio = new Audio();
+        
+                function loadTrack(index) {
+                    const track = playlist.children[index];
+                    audio.src = track.getAttribute('data-src');
+                    currentTrack.textContent = track.textContent;
+                    currentTrackIndex = index;
+                }
+        
+                function playPause() {
+                    if (isPlaying) {
+                        audio.pause();
+                        playPauseBtn.textContent = '▶';
+                    } else {
+                        audio.play();
+                        playPauseBtn.textContent = '||';
+                    }
+                    isPlaying = !isPlaying;
+                }
+        
+                function nextTrack() {
+                    currentTrackIndex = (currentTrackIndex + 1) % playlist.children.length;
+                    loadTrack(currentTrackIndex);
+                    if (isPlaying) audio.play();
+                }
+        
+                function prevTrack() {
+                    currentTrackIndex = (currentTrackIndex - 1 + playlist.children.length) % playlist.children.length;
+                    loadTrack(currentTrackIndex);
+                    if (isPlaying) audio.play();
+                }
+        
+                playPauseBtn.addEventListener('click', playPause);
+                nextBtn.addEventListener('click', nextTrack);
+                prevBtn.addEventListener('click', prevTrack);
+        
+                playlist.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'LI') {
+                        loadTrack([...playlist.children].indexOf(e.target));
+                        isPlaying = false;
+                        playPause();
+                    }
+                });
+        
+                audio.addEventListener('timeupdate', () => {
+                    const progress = (audio.currentTime / audio.duration) * 100;
+                    progressBar.style.width = `${progress}%`;
+                });
+        
+                audio.addEventListener('ended', nextTrack);
+        
+                // Initial load
+                loadTrack(0);
+            </script>
+        </body>
+        <div class="social-icons">
+            
+        </div>
+       
+    </div>
+    
+    <script>
+        // Matrix animation
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "HACKYハッカーישראל";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0b504f";
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drops.fill(1);
+        });
+
+        // Check if the browser supports animations
+        var supportsAnimations = (typeof document.createElement('div').style.animation !== 'undefined');
+        
+        if (!supportsAnimations) {
+            // Fallback for browsers that don't support animations
+            document.querySelector('.logo-text').style.textShadow = '0 0 10px #0b504f, 0 0 20px #0b504f';
+            document.querySelector('.enter-button').style.boxShadow = '0 0 10px #ff0000';
+        }
+    </script>
+</body>
+</html>

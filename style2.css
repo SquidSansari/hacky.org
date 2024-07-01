@@ -1,0 +1,23 @@
+.social-icons {
+  position: relative;
+  bottom: -3%;
+  left: 0%;
+  display: block;
+  align-items: center;
+}
+
+.social-icon {
+  margin-left: .5px; /* Adjust spacing between icons */
+  
+}
+
+.social-icon img {
+  width: 30px; /* Adjust icon size */
+  height: 30px; /* Adjust icon size */
+  border-radius: 50%; /* Make the icons circular */
+  transition: transform 0.3s ease; /* Add a smooth transition on hover */
+}
+
+.social-icon img:hover {
+  transform: scale(1.1); /* Scale the icon on hover */
+}

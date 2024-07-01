@@ -1,0 +1,67 @@
+.tagline {
+  position: absolute;
+  top: 100%;  /* Position it below the logo */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: #ff0000;  /* Changed to red to match the theme */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+  z-index: 1000;  /* Ensure it's above other elements */
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  border-radius: 5px;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+  }
+  to {
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+}
+
+
+#speed-control {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#speed-slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 10px;
+  background: #000000;
+  outline: none;
+  border: 1px solid #C0b504f;
+  margin: 0 10px;
+}
+
+#speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#speed-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#speed-value {
+  color: #ffffff;
+  font-size: 1rem;
+  width: 40px;
+  text-align: center;
+}
+

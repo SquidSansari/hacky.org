@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACK - EST. ∞</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="style2.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            font-size: 20px; /* Base font size */
+            background-color: #000000;
+            overflow: scroll;
+            color: #ff0000;
+        }
+        .product-container {
+            max-width: 1.5rem;
+            display: block;
+            margin: 0 auto;
+            background-color: #ffffff00;
+            padding: 10px;
+            border-radius: 0%;
+            box-shadow: 0 0 10px rgba(255,0,0,0.1);
+            text-align: center;
+        
+               width: 90%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        .product-image {
+            width: 50%;
+            height: auto;
+            align-items: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color:white
+        }
+        .product-image-container{
+            max-width: 40%; 
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+        .btn {
+            display: inline-block;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+        }
+        .btn:hover {
+            b        }
+        h1, h2, h3, h4, h5, h6, p, button, .logo-text, .tagline {
+            font-family: 'VT323', monospace;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+        }
+        .container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: block;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container {
+            position: relative;
+            displa
+            width: 300px;
+            height: 150px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .logo-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem; /* Larger font size for logo text */
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            animation: glow 4.5s ease-in-out infinite alternate, glitch .7ms infinite;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000;
+            }
+            to {
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
+        }
+        @keyframes glitch {
+            200% {
+                text-shadow: -2px 3px 0 red, 20px -3px 0 rgb(123, 0, 255);
+                transform: translate(var(--glitch-translate, 0));
+            }
+            2% {
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+            100%, 110% {  
+                text-shadow: none; 
+                transform: none; 
+            }
+        }
+        .tagline {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem; /* Larger font size for tagline */
+            color: #ddd;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .enter-button {
+            font-size: 1.5rem; /* Larger font size for buttons */
+            padding: 15px 30px; /* Adjust padding to scale with font size */
+            color: #ff0000;
+            background-color: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+            animation: buttonGlow 1.5s ease-in-out infinite alternate, glitch 2s infinite;
+            margin: 10px;  /* Space around each button */
+        }
+        .enter-button:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        @keyframes buttonGlow {
+            from {
+                box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            }
+            to {
+                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <div class="logo-text">MERCH</div>
+            </div>
+        </div>
+        <body>
+            <div class="product-container">
+                <img src="./hackcomp2.png" alt="Long Sleeve Shirt" class="product-image">
+                <h1 class="product-title">HACKY Long Sleeve Shirt</h1>
+                <p class="product-price">$29.99</p>
+                <p>Black long sleeve shirt with red HACKY logo.</p> Perfect for any occasion.</p>
+                <a href="#" class="btn">Add to Cart</a>
+                <div class="product-container">
+                    <img src="./hackfbcov.png" alt="EP" class="product-image">
+                    <h1 class="product-title">HACKY- FIRMAMENT BREACH EP</h1>
+                    <p class="product-price">$10</p>
+                    <p>6 Track EP Produced by Quataee</p>[DIGITAL DOWNLOAD]</p>
+                    <a href="#" class="btn">Add to Cart</a>
+             
+       
+        <div class="social-icons">
+            <a href="#" class="social-icon"><img src="twt1.png" alt="Twitter"></a>
+            <a href="#" class="social-icon"><img src="yt1.png" alt="YouTube"></a>
+            <a href="https://www.instagram.com/gilfarmin/" class="social-icon"><img src="./igpixel3.png" alt="Instagram"></a>
+           
+        </div>
+        <div class="social-icons">
+            <a href="https://open.spotify.com/artist/1kAJgTx3NAi1L7BF3n847B?si=cj-RHPtATze7R61MkxhxPg" class="social-icon"><img src="./spotpix.png" alt="Spotify"></a>
+            <a href="#" class="social-icon"><img src="./apple.png" alt="Apple Music"></a>
+        </div>
+    </div>
+    </body>
+    <script>
+        // Matrix animation
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "$¥$€¥$¥€";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#ff0000";
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drops.fill(1);
+        });
+
+        // Check if the browser supports animations
+        var supportsAnimations = (typeof document.createElement('div').style.animation !== 'undefined');
+        
+        if (!supportsAnimations) {
+            // Fallback for browsers that don't support animations
+            document.querySelector('.logo-text').style.textShadow = '0 0 10px #ff0000, 0 0 20px #ff0000';
+            document.querySelector('.enter-button').style.boxShadow = '0 0 10px #ff0000';
+        }
+    </script>
+</body>
+</html>

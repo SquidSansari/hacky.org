@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACK - EST. ∞</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="style2.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'VT323', monospace;
+            font-size: 20px; /* Base font size */
+            background-color: #1a1a1a;
+            overflow: hidden;
+            color: #fff;
+        }
+        h1, h2, h3, h4, h5, h6, p, button, .logo-text, .tagline {
+            font-family: 'VT323', monospace;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .logo-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem; /* Larger font size for logo text */
+            font-weight: bold;
+            color: #0b504f;
+            text-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            animation: glow 4.5s ease-in-out infinite alternate, glitch .7ms infinite;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #0b504f, 0 0 10px #0b504f, 0 0 15px #0b504f;
+            }
+            to {
+                text-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            }
+        }
+        @keyframes glitch {
+            200% {
+                text-shadow: -2px 3px 0 #0b504f, 20px -3px 0 rgb(123, 0, 255);
+                transform: translate(var(--glitch-translate, 0));
+            }
+            2% {
+                text-shadow: 2px -3px 0 #0b504f, -2px 3px 0 #4F180B;
+            }
+            100%, 110% {  
+                text-shadow: none; 
+                transform: none; 
+            }
+        }
+        .tagline {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem; /* Larger font size for tagline */
+            color: #ddd;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .enter-button {
+            font-size: 1.5rem; /* Larger font size for buttons */
+            padding: 15px 30px; /* Adjust padding to scale with font size */
+            color: #0b504f;
+            background-color: transparent;
+            border: 2px solid #0b504f;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #0b504f;
+            box-shadow: 0 0 10px #0b504f;
+            animation: buttonGlow 1.5s ease-in-out infinite alternate, glitch 2s infinite;
+            margin: 10px;  /* Space around each button */
+        }
+        .enter-button:hover {
+            background-color: #076b67(255, 0, 0, 0.1);
+        }
+        @keyframes buttonGlow {
+            from {
+                box-shadow: 0 0 5px #0b504f, 0 0 10px #0b504f;
+            }
+            to {
+                box-shadow: 0 0 10px #0b504f, 0 0 20px #0b504f, 0 0 30px #0b504f;
+            }
+        }
+       
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <div class="logo-text">HACKY</div>
+            </div>
+        </div>
+        <a href="musiclink.html"><button class="enter-button">MUSIC</button></a>
+        <a href="hack site music page.html"><button class="enter-button">!!!!!</button></a>
+        <a href="about.html"><button class="enter-button">ABOUT</button></a>
+        <div class="social-icons">
+            
+            <a href="https://www.youtube.com/channel/UCsHWq9Yis956rwQKRuq8jZA" class="social-icon"><img src="yt1.png" alt="YouTube"></a>
+            <a href="https://www.instagram.com/gilfarmin/" class="social-icon"><img src="./igpixel3.png" alt="Instagram"></a>
+           
+        </div>
+        <div class="social-icons">
+            <a href="https://open.spotify.com/artist/1kAJgTx3NAi1L7BF3n847B?si=cj-RHPtATze7R61MkxhxPg" class="social-icon"><img src="./spotpix.png" alt="Spotify"></a>
+            <a href="https://music.apple.com/gb/artist/hacky/1640208366" class="social-icon"><img src="./apple.png" alt="Apple Music"></a>
+        </div>
+    </div>
+    
+    <script>
+        // Matrix animation
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "HACKYハッカーישראל";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0b504f";
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            drops.fill(1);
+        });
+
+        // Check if the browser supports animations
+        var supportsAnimations = (typeof document.createElement('div').style.animation !== 'undefined');
+        
+        if (!supportsAnimations) {
+            // Fallback for browsers that don't support animations
+            document.querySelector('.logo-text').style.textShadow = '0 0 10px ##0b504f, 0 0 20px ##0b504f';
+            document.querySelector('.enter-button').style.boxShadow = '0 0 10px ##0b504f';
+        }
+    </script>
+</body>
+</html>
